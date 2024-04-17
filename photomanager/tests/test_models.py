@@ -37,3 +37,12 @@ class PhotographerModelTest(TestCase):
         max_length = photographer._meta.get_field('biography').max_length
         self.assertEqual(max_length, 1000)
 
+    def test_object_name_is_last_name_comma_first_name(self):
+        photographer = Photographer.objects.get(id=1)
+        expected_object_name = f'{photographer.last_name}, {photographer.first_name}'
+        self.assertEqual(str(photographer), expected_object_name)
+
+    def test_get_absolute_url(self):
+        photographer = Photographer.objects.get(id=1)
+        # This will also fail if the urlconf is not defined.
+        self.assertEqual(photographer.get_absolute_url(), '/photomanager/photographer/1')
