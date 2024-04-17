@@ -10,7 +10,7 @@ from django.urls import reverse
 class Photographer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    biography = models.TextField(max_length=1000)
+    biography = models.TextField(max_length=1000, verbose_name="About Me")
 
     def get_absolute_url(self):
         return reverse('photographer-detail', args=[str(self.id)])
@@ -46,4 +46,3 @@ class Photo(models.Model):
 
     def most_recent(self):
         return self.date_taken >= timezone.now() - datetime.timedelta(days=30)
-
