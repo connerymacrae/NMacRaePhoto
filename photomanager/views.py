@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
+from django.http import HttpResponse
+from django.urls import reverse
+from django.urls import reverse_lazy
 
 # Create your views here.
 from .models import Photographer, Photo
@@ -25,5 +28,5 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
-class PhotographerDetailView(generic.DetailView):
-    model = Photographer
+def photographer(request):
+    return render(request, 'photographer_detail.html')

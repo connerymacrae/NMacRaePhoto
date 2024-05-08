@@ -13,7 +13,7 @@ class Photographer(models.Model):
     biography = models.TextField(max_length=1000, verbose_name="About Me")
 
     def get_absolute_url(self):
-        return reverse('photographer-detail', args=[str(self.id)])
+        return reverse('photographer', args=[str(self.id)])
 
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'
