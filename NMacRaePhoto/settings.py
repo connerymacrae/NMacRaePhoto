@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'photomanager.apps.PhotomanagerConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
