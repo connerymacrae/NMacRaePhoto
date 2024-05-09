@@ -129,4 +129,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'photos')
 
 MEDIA_URL = '/photos/'
 
-LOGIN_REDIRECT_URL = 'photomanager/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
