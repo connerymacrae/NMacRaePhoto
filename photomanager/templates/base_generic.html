@@ -18,6 +18,13 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2">
+          <p>
+              {% if user.is_authenticated %}
+                 Hello, {{ user.username }}.
+              {% else %}
+                <a href="{% url 'accounts:login' %}">Log in</a>
+              {%  endif %}
+          </p>
           {% block sidebar %}
             <ul class="sidebar-nav">
               <li><a href="{% url 'index' %}">Home</a></li>
