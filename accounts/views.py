@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 def register(request):
-    if request.method == 'POST':
+    if request.method != 'POST':
         form = UserCreationForm()
     else:
         form = UserCreationForm(data=request.POST)
