@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from accounts.forms import UserRegisterForm
 
 
 def register(request):
     if request.method != 'POST':
-        form = UserCreationForm()
+        form = UserRegisterForm()
     else:
-        form = UserCreationForm(data=request.POST)
+        form = UserRegisterForm(data=request.POST)
 
         if form.is_valid():
             new_user = form.save()
