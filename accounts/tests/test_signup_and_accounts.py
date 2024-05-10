@@ -25,3 +25,16 @@ class RegisterUserTests(TestCase):
         created_user = User.objects.get(username='test')
         self.assertEqual(created_user.email, 'john@john.com')
         #self.assertTemplateUsed(response, 'registration/login.html')
+
+
+class AccountsTest(TestCase):
+    def setUp(self):
+        test_user = User.objects.create_user({'username': 'johnjohn',
+                                              'email': 'john@john.com',
+                                              'password1': 'XD78xd87!',
+                                              'password2': 'XD78xd87!'})
+        test_user.save()
+
+    def test_user_can_login(self):
+        login = self.client.login(username='johnjohn', password='XD78xd87!)
+        response = self.client.get('/accounts')
