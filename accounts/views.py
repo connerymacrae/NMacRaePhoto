@@ -15,4 +15,4 @@ def register(request):
             return redirect('')
 
     context = {'form': form}
-    return render(request, 'registration/registration.html', context)
+    return render(request, 'registration/register.html', context)
