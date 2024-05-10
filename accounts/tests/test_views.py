@@ -1,6 +1,11 @@
 from django.test import TestCase
+from accounts.forms import UserRegisterForm
 from django.contrib.auth import get_user_model
 User = get_user_model()
+
+
+class SignUpTests(TestCase):
+
 
 class AccountsViewTests(TestCase):
 
@@ -16,6 +21,8 @@ class AccountsViewTests(TestCase):
 
     def test_logout_button_is_displayed(self):
         """same question about the redirect after logout"""
+
+
 
 
 
