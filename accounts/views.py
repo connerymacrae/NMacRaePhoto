@@ -12,7 +12,7 @@ def register(request):
         if form.is_valid():
             new_user = form.save()
             login(request, new_user)
-            return redirect('accounts:login')
+            return redirect('photomanager:index')
 
     context = {'form': form}
     return render(request, 'registration/register.html', context)
