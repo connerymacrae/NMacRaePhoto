@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.http import HttpResponse
 from django.urls import reverse
@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 from .models import Photographer, Photo
+from .forms import PhotoForm
 
 
 def index(request):
@@ -30,3 +31,19 @@ def index(request):
 
 def photographer(request):
     return render(request, 'photographer_detail.html')
+
+
+def upload_photo(request):
+    if request.method != 'POST':
+        # no data submitted, create new form
+        form = PhotoForm()
+    else:
+        # POST data submitted; process data
+        form = PhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('photomanager:upload_photo')
+
+    # Display a blank or invalid form
+    context = {'form': form}
+    return render(request, 'photomanager/upload_photo.html', context)

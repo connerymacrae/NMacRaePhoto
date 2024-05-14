@@ -1,0 +1,12 @@
+{% extends 'photomanager/base_generic.html' %}
+
+{% block content %}
+    <p>Upload a New Photo:</p>
+
+    <form action="{%  url 'photomanager:upload_photo' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button name="upload">Add Photo</button>
+    </form>
+
+{%  endblock content %}

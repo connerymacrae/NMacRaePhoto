@@ -36,7 +36,7 @@ class Photo(models.Model):
         ('a', 'Art'),
     )
 
-    tag = models.CharField(max_length=6, choices=TAGS, blank=True)
+    tag = models.CharField(max_length=6, choices=TAGS, blank=False)
 
     def get_absolute_url(self):
         return reverse('photo-detail', args=[str(self.id)])
