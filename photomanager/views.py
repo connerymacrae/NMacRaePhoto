@@ -30,7 +30,7 @@ def index(request):
 
 
 def photographer(request):
-    return render(request, 'photographer_detail.html')
+    return render(request, 'photomanager/photographer_detail.html')
 
 
 def upload_photo(request):
