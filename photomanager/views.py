@@ -5,17 +5,17 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 
 # Create your views here.
-from .models import Photographer, Photo
+from .models import Photographer, Photo, PhotoTag
 from .forms import PhotoForm
 
 
 def index(request):
     num_photo = Photo.objects.all().count
-    num_event_photo = Photo.objects.filter(tag__exact='e').count
-    num_outdoor_photo = Photo.objects.filter(tag__exact='o').count
-    num_headshot_photo = Photo.objects.filter(tag__exact='h').count
-    num_product_photo = Photo.objects.filter(tag__exact='p').count
-    num_art_photo = Photo.objects.filter(tag__exact='a').count
+    num_event_photo = PhotoTag.objects.filter(name__exact='Event').count
+    num_outdoor_photo = PhotoTag.objects.filter(name__exact='outdoor').count
+    num_headshot_photo = PhotoTag.objects.filter(name__exact='headshot').count
+    num_product_photo = PhotoTag.objects.filter(name__exact='product').count
+    num_art_photo = PhotoTag.objects.filter(name__exact='art').count
 
     context = {
         'num_photo': num_photo,
@@ -47,3 +47,10 @@ def upload_photo(request):
     # Display a blank or invalid form
     context = {'form': form}
     return render(request, 'photomanager/upload_photo.html', context)
+
+
+def phototag(request):
+    phototags = PhotoTag.objects.get(name=phototag_name),
+    photos = Photo.objects.filter(phototag=phototag_name).order_by('-date_uploaded')
+    context = {'phototags': phototags, 'photos': photos}
+    return render(request, 'photomanager/phototag.html', context)

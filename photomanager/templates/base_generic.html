@@ -29,11 +29,16 @@
           {% block sidebar %}
             <ul class="sidebar-nav">
               <li><a href="{% url 'photomanager:index' %}">Home</a></li>
-              <li><a href="">All Event Photos</a></li>
+              {% for phototag in phototags %}
+                <li>All {{ phototag.name }} Photos</li>
+              {% empty %}
+                <li>No Photos have been added yet.</li>
+              {% endfor %}
+              <!---<li>All Event Photos</a></li>
               <li><a href="">All Outdoor Photos</a></li>
               <li><a href="">All Headshots</a></li>
               <li><a href="">All Product Photos</a></li>
-              <li><a href="">All Art Photos</a></li>
+              <li><a href="">All Art Photos</a></li>--->
               <li><a href="{% url 'photomanager:photographer' %}">About Me</a></li>
             </ul>
           {% endblock %}
