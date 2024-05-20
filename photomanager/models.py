@@ -15,7 +15,7 @@ class PhotoTag(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('tag-detail', args=[self.name])
+        return reverse('phototag-detail', args=[self.name])
 
 
 class Photographer(models.Model):
@@ -53,7 +53,7 @@ class Photo(models.Model):
         return reverse('photo-detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     '''def most_recent(self):
         return self.date_uploaded >= timezone.now() - datetime.timedelta(days=30)'''

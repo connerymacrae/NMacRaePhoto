@@ -10,6 +10,7 @@ from .forms import PhotoForm
 
 
 def index(request):
+    phototags = PhotoTag.objects.all()
     num_photo = Photo.objects.all().count
     num_event_photo = PhotoTag.objects.filter(name__exact='Event').count
     num_outdoor_photo = PhotoTag.objects.filter(name__exact='outdoor').count
@@ -18,6 +19,7 @@ def index(request):
     num_art_photo = PhotoTag.objects.filter(name__exact='art').count
 
     context = {
+        'phototags': phototags,
         'num_photo': num_photo,
         'num_event_photo': num_event_photo,
         'num_outdoor_photo': num_outdoor_photo,
@@ -26,11 +28,18 @@ def index(request):
         'num_art_photo': num_art_photo,
     }
 
-    return render(request, 'index.html', context=context)
+    return render(request, 'index.html', context)
 
 
-def photographer(request):
-    return render(request, 'photomanager/photographer_detail.html')
+def photographer_detail(request):
+    photographers = Photographer.objects.order_by('last_name')
+    phototags = PhotoTag.objects.all()
+    context = {'photographers': photographers, 'phototags': phototags}
+    return render(request, 'photomanager/photographers.html', context=context)
+
+
+'''class PhotographerListView(generic.ListView):
+    model = Photographer'''
 
 
 def upload_photo(request):
@@ -49,8 +58,8 @@ def upload_photo(request):
     return render(request, 'photomanager/upload_photo.html', context)
 
 
-def phototag(request):
-    phototags = PhotoTag.objects.get(name=phototag_name),
+def phototag(request, pk):
+    phototags = PhotoTag.objects.get(pk),
     photos = Photo.objects.filter(phototag=phototag_name).order_by('-date_uploaded')
     context = {'phototags': phototags, 'photos': photos}
     return render(request, 'photomanager/phototag.html', context)

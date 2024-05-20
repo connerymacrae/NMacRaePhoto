@@ -4,7 +4,7 @@ from . import views
 app_name = 'photomanager'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('photographer/', views.photographer, name='photographer'),
+    path('photographers/', views.photographer_detail, name='photographers'),
     path('upload_photo/', views.upload_photo, name='upload_photo'),
-    path('phototag/<phototag_name>', views.phototag, name='phototag'),
+    path('phototags/<int:pk>', views.phototag, name='phototag'),
 ]

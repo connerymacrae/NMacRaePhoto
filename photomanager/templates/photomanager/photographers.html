@@ -1,0 +1,25 @@
+<{% extends "base_generic.html" %}
+
+{% block sidebar %}
+  {% for phototag in phototags %}
+                  <li>
+                      <a href="{% url 'photomanager:phototag' phototag.pk %}">
+                          All {{ phototag.name }} Photos</a>
+                  </li>
+  {% empty %}
+                      <li>No Photos have been added yet.</li>
+                {% endfor %}
+{% endblock %}
+
+{% block content %}
+<p> Photographer Name</p>
+    <ul>
+        {% for photographer in photographers %}
+            <li>
+                <p>{{ photographer }}</p>
+                <p>{{ photographer.biography }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock content%}

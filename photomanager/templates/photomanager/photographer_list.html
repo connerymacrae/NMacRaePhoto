@@ -1,0 +1,18 @@
+<{% extends "index.html" %}
+
+{% block content %}
+  <h1> Photographer List</h1>
+    {% if photographer_list %}
+      <ul>
+        {% for photographer in photographer_list %}
+            <li>
+                <p>{{ photographer }}</p>
+                <p>{{ photographer.biography }}</p>
+            </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+       <p>No Photographers registered yet.</p>
+
+    {%  endif %}
+{% endblock content%}
