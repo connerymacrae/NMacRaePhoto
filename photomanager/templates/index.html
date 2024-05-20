@@ -1,5 +1,16 @@
 {% extends "base_generic.html" %}
 
+{% block sidebar %}
+  {% for phototag in phototags %}
+                  <li>
+                      <a href="{% url 'photomanager:phototag' phototag.pk %}">
+                          All {{ phototag.name }} Photos</a>
+                  </li>
+                {% empty %}
+                      <li>No Photos have been added yet.</li>
+                {% endfor %}
+{% endblock %}
+
 {% block content %}
   <h1>Niall MacRae Photography</h1>
   <p>
@@ -8,7 +19,13 @@
   </p>
   <h2></h2>
   <p>This repository contains the following photographs:</p>
-  <ul>
-    <li><strong>Event:</strong> {{ num_event_photo }}</li>
-  </ul>
+    {% if phototags %}
+      <ul>
+        {% for phototag in phototags %}
+          <li><strong>{{ phototag.name }}:</strong> {{ phototag.photo_set.count }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+        <p>This photographer has no photos uploaded.</p>
+    {% endif %}
 {% endblock %}
