@@ -22,6 +22,7 @@ class Photographer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     biography = models.TextField(max_length=1000, verbose_name="About Me")
+    avatar = models.ImageField(upload_to='photos/photographers', default='photos/photos/photographers/null.png')
 
     def get_absolute_url(self):
         return reverse('photographer', args=[str(self.id)])
