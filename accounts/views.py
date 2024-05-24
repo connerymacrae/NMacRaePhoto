@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from accounts.forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User, UserManager
 
 
 def register(request):
@@ -16,3 +18,13 @@ def register(request):
 
     context = {'form': form}
     return render(request, 'registration/register.html', context)
+
+@login_required
+def profile(request):
+    return render(request, 'registration/profile.html')
+
+'''def profile(request):
+    username = User.objects.username()
+    useremail = User.objects.email()
+    context = {'username': username, 'useremail': useremail}
+    return render(request, 'registration/profile.html', context=context)'''

@@ -2,9 +2,10 @@
 <html lang="en">
   <head>
     {% block title %}
-      <title>Welcome to the Photography Repository</title>
+      <title>The Photography Repository</title>
     {% endblock %}
     <meta charset="utf-8" />
+   {% comment %}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,21 +14,27 @@
     <!-- Add additional CSS in static file -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+   {% endcomment %}
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-8">
-          <p>
-              {% if user.is_authenticated %}
-                 Hello, {{ user.username }}.
-              {% else %}
-                <a href="{% url 'accounts:register' %}">Register</a>
-                <a href="{% url 'accounts:login' %}">Log in</a>
-              {%  endif %}
-          </p>
-        </div>
-      </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <p>
+         {% if user.is_authenticated %}
+             Hello, {{ user.username }}.
+         {% else %}
+             <a href="{% url 'accounts:register' %}">Register</a>
+             <a href="{% url 'accounts:login' %}">Log in</a>
+         {%  endif %}
+      </p>
+      <p>
+          {% if user.is_authenticated %}
+              <a href="{% url 'accounts:user-profile' %}">Profile</a>
+              <hr />
+              <form action="{% url 'accounts:logout' %}" method="post">
+                  {% csrf_token %}
+                  <button name="submit">Log out</button>
+              </form>
+          {% endif %}
+      </p>
   </body>
+
+{% block content %}{% endblock content %}
