@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
    {% endcomment %}
   </head>
+  {% block content %}
   <body>
       <p>
          {% if user.is_authenticated %}
@@ -37,4 +38,4 @@
       </p>
   </body>
 
-{% block content %}{% endblock content %}
+{% endblock content %}
