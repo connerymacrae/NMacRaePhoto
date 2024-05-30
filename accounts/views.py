@@ -25,8 +25,9 @@ def profile(request):
     return render(request, 'registration/profile.html')
 
 
-'''def profile(request):
-    username = User.objects.username()
-    useremail = User.objects.email()
-    context = {'username': username, 'useremail': useremail}
-    return render(request, 'registration/profile.html', context=context)'''
+# def profile(request):
+#     username = User.objects.username()
+#     useremail = User.objects.email()
+#     photographer = getattr(request.user, 'photgrapher', None)
+#     context = {'username': username, 'useremail': useremail, 'photographer': photographer}
+#     return render(request, 'registration/profile.html', context=context)

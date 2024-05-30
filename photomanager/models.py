@@ -19,10 +19,19 @@ class PhotoTag(models.Model):
 
 
 class Photographer(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, null=True, blank=True)
+    # first_name = models.CharField(max_length=100)
+    # last_name = models.CharField(max_length=100)
     biography = models.TextField(max_length=1000, verbose_name="About Me")
     avatar = models.ImageField(upload_to='photos/photographers', default='photos/photos/photographers/null.png')
+
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @property
+    def last_name(self):
+        return self.user.last_name
 
     def get_absolute_url(self):
         return reverse('photographer', args=[str(self.id)])

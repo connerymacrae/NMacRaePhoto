@@ -9,6 +9,10 @@
 
         <a href="{% url "accounts:password_change" %}">Change Password?</a>
 
-        <a href="{% url 'photomanager:index' %}">Home</a>
+        {%  if photographer is not None %}
+            {# <a href="{% url 'photomanager:index' %}">Home</a> #}
+            {%  include 'photomanager/photo_profile_links.html' %}
+        {% endif %}
 {% endblock content %}
+
 
