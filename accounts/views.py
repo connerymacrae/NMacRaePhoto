@@ -30,3 +30,7 @@ def profile(request):
     useremail = User.objects.email()
     context = {'username': username, 'useremail': useremail}
     return render(request, 'registration/profile.html', context=context)'''
+
+
+#def PasswordChangeDoneView(PasswordChangeDoneView):
+    #template_name = 'user-profile'
